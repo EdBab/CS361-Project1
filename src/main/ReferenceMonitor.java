@@ -1,38 +1,43 @@
 import java.util.HashMap;
 
 
+
 public class ReferenceMonitor {
 	ObjectManager x = new ObjectManager();
-	HashMap<String,Integer>object;//has level
+	
+	HashMap<String,Integer>objects;//has level
 	public void createObject(String name, Integer level){
-		this.object.put(name, level);
+		//SecureObject yes = new SecureObject(name);
+		this.objects.put(name, level);
 		this.x.createObject(name, 0);
 	}
 	public int checkRead(int level, String name){
-		if(level >= this.object.get(name) ){
-			return this.x.read(name);
+		if(level >= this.objects.get(name) ){
+			return this.x.executeRead(name);
 		}
 		return 0;
 	}
 	
 	public boolean checkWrite(int level, String name,int value){
-		if(level <= this.object.get(name) ){
-			this.x.write(name,value);
+		if(level <= this.objects.get(name) ){
+			this.x.executeWrite(name,value);
 			return true;
 		}
 		return false;
 	}
 	class ObjectManager{
-		HashMap<String,Integer>object;//has value
-		public void createObject(String name, Integer value){
-			this.object.put(name, value);
+		HashMap<String,Integer> objects;//has value
+		public void createObject(String add, int value){
+			this.objects.put(add,value);
 			
 		}
-		public int read(String name){
-			return this.object.get(name);
+		public int executeRead(String read){
+			
+				return this.objects.get(read);
+			
 		}
-		public void write(String name, int value){
-			this.object.put(name, value);
+		public void executeWrite(String write, int value){
+			this.objects.put(write,value);
 		}
 	}
 

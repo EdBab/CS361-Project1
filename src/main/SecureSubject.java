@@ -1,9 +1,9 @@
-public class Subject {
+public class SecureSubject {
 	int level;
 	int readTemp;
 	String name;
 
-	Subject(String name,int level, int readTemp) {
+	SecureSubject(String name,int level, int readTemp) {
 		this.name = name;
 		this.level = level;
 		this.readTemp = readTemp;

@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class SecureSystem {
 	ReferenceMonitor yes = new ReferenceMonitor();
-	ArrayList<Subject> subjects = new ArrayList<Subject>();
+	ArrayList<SecureSubject> subjects = new ArrayList<SecureSubject>();
 	
 	public void createSubject(String name, Integer level){
 		
-		this.subjects.add(new Subject(name,level,0));
+		this.subjects.add(new SecureSubject(name,level,0));
+	}
+	public ReferenceMonitor getReferenceMonitor(){
+		return this.yes;
 	}
 	public void printState(){
 		
@@ -22,6 +25,18 @@ public class SecureSystem {
 		int x = SecurityLevel.HIGH;
 		SecureSystem sys = new SecureSystem();
 	    Scanner sc = new Scanner(instructions);
+	    System.out.println(sc.next());
+	    while(sc.hasNext()){
+	    	String [] line = sc.next().split("\\s");
+	    	if(line[0].equalsIgnoreCase("read")){
+	    		
+	    	}
+	    	else if(line[0].equalsIgnoreCase("write")){
+	    		
+	    	}
+	    	else
+	    		continue;
+	    }
 	  
 	}
 
