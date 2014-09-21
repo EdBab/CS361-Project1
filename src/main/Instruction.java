@@ -44,6 +44,18 @@ public class Instruction {
 	    public boolean isWriteInstruction () {
 		return (command.equalsIgnoreCase("Write"));
 	    } // isReadInstruction
+	    public boolean isValidSubject(ReferenceMonitor mon){
+	    	if(mon.subjects.containsKey(subjName)){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    public boolean isValidObject(ReferenceMonitor mon){
+	    	if(mon.objects.containsKey(objName)){
+	    		return true;
+	    	}
+	    	return false;
+	    }
 
 	    public String getInstructionCommand () {
 		return command;
@@ -72,6 +84,15 @@ public class Instruction {
 		
 
 	    public void printInstruction () {
-	        
+	        if(command.equals("BadInstruction")){
+	        	System.out.println(command);
+	        }
+	        else if(command.equalsIgnoreCase("read")){
+	        	System.out.println(subjName + " reads " + objName);
+	        }
+	        else
+	        {
+	        	System.out.println(subjName + " writes value " + value + " to " + objName);
+	        }
 	    } // printInstruction
 }
