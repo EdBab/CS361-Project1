@@ -68,8 +68,9 @@ public class SecureSystem {
 		sys.createSubject("Lyle", low);
 		sys.createSubject("Hal", high);
 		Scanner sc = new Scanner(instructions);
-		while (sc.hasNext()) {
-			String[] line = sc.nextLine().split(" ");
+		while (sc.hasNext()) {// generate bad instructions for all else's
+			String x = sc.nextLine();
+			String[] line = x.split(" ");
 			if (line.length == 3) {
 				Instruction instruct = new Instruction(line[0], line[1],
 						line[2]);
