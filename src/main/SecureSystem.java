@@ -1,10 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-//import java.util.*;
+
 
 public class SecureSystem {
 	ReferenceMonitor monitor = new ReferenceMonitor();
@@ -38,13 +37,13 @@ public class SecureSystem {
 
 	public void printState() {
 		System.out.println("The current state is: ");
-		System.out.println("     LObj has value: "
+		System.out.println("   LObj has value: "
 				+ this.monitor.getValue("LObj"));
-		System.out.println("     HObj has value: "
+		System.out.println("   HObj has value: "
 				+ this.monitor.getValue("HObj"));
-		System.out.println("     Lyle has recently read: "
+		System.out.println("   Lyle has recently read: "
 				+ this.getSubjectTemp("Lyle"));
-		System.out.println("     Hal has recently read: "
+		System.out.println("   Hal has recently read: "
 				+ this.getSubjectTemp("Hal"));
 	}
 
@@ -74,11 +73,12 @@ public class SecureSystem {
 			if (line.length == 3) {
 				Instruction instruct = new Instruction(line[0], line[1],
 						line[2]);
-				if (instruct.isReadInstruction()
-						&& instruct.isValidObject(sys.getReferenceMonitor())
-						&& instruct.isValidSubject(sys.getReferenceMonitor())) {
-					sys.updateSubject(instruct.getInstructionSubjName(), sys.monitor.checkRead(instruct.getInstructionSubjName(),
-							instruct.getInstructionObjName()));
+				if (instruct.isReadInstruction()) {
+					sys.updateSubject(
+							instruct.getInstructionSubjName(),
+							sys.monitor.checkRead(
+									instruct.getInstructionSubjName(),
+									instruct.getInstructionObjName()));
 					instruct.printInstruction();
 
 				} else {
@@ -87,10 +87,8 @@ public class SecureSystem {
 			} else if (line.length == 4 && isNumeric(line[3])) {
 				Instruction instruct = new Instruction(line[0], line[1],
 						line[2], Integer.valueOf(line[3]));
-				if (instruct.isWriteInstruction()
-						&& instruct.isValidObject(sys.getReferenceMonitor())
-						&& instruct.isValidSubject(sys.getReferenceMonitor()) ) {
-					
+				if (instruct.isWriteInstruction()) {
+
 					sys.monitor.checkWrite(instruct.getInstructionSubjName(),
 							instruct.getInstructionObjName(),
 							instruct.getInstructionValue());
